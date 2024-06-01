@@ -9,7 +9,7 @@ import { UserInfo } from '@firebase/auth';
 import { Dropdown, MenuProps, Space } from 'antd';
 import { Links } from '../../../constants/routes';
 import { useNavigate } from 'react-router';
-import { endSession, isLoggedIn as getSessionAccessToken } from '../../../session';
+import { endSession, isLoggedIn as getSessionAccessToken } from '../../../utils/api/session';
 
 const loginPlaceholder = 'Вход в аккаунт';
 

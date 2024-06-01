@@ -2,20 +2,15 @@ import { FC, PropsWithChildren } from 'react'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer';
 import styles from './MainLayout.module.scss'
+import { Breadcrumbs } from '../../../components/Breadcrumbs';
 
-interface MainLayoutProps {
-    showBreadcrumbs?: boolean
-}
-
-const MainLayout: FC<PropsWithChildren<MainLayoutProps>> = ({
-                                                                children,
-                                                                showBreadcrumbs = true,
-                                                            }) => {
+const MainLayout: FC<PropsWithChildren> = ({
+                                               children,
+                                           }) => {
     return (
         <div className={styles.wrapper}>
             <Header />
-            Breadcrumbs
-            {/* {showBreadcrumbs && <Breadcrumbs />} */}
+            <Breadcrumbs />
             <div className={styles.content}>{children}</div>
             <Footer />
         </div>

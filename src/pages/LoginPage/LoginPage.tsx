@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 
 import styles from './LoginPage.module.scss'
-import { createUser, signInUser } from '../../firebase'
-import { startSession, UserType } from '../../session'
+import { createUser, signInUser } from '../../utils/api/firebaseAPI'
+import { startSession, UserType } from '../../utils/api/session'
+import { AuthActions } from '../../redux/reducers/auth';
 
 export const LoginPage: FC = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
@@ -20,13 +21,15 @@ export const LoginPage: FC = () => {
             console.log('Please enter your username and password.')
             return
         }
-        try {
+
+        dispatch(AuthActions.getCurrentUser({ email, password }))
+        /* try {
             let loginResponse = await signInUser(email, password)
             startSession(loginResponse.user as UserType)
             navigate('/user')
         } catch (error: any) {
             console.error(error.message)
-        }
+        } */
     }
 
     const onRegisterSubmit = async () => {
@@ -59,7 +62,8 @@ export const LoginPage: FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button onClick={onRegisterSubmit}>Login</button>
+                {/* <button onClick={onRegisterSubmit}>Login</button> */}
+                <button onClick={onLoginSubmit}>Login</button>
                 {/* <Box sx={{ mt: 2 }}> */}
                 {/*     Don't have an account yet? <Link href="/register">Register</Link> */}
                 {/* </Box> */}

@@ -7,6 +7,7 @@
     gap: 20px;
     @include body-1;
     color: $neutral-8;
+    align-items: center;
 
     .menuItem {
         cursor: pointer;

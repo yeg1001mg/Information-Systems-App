@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigate } from 'react-router'
 import styles from './ProfilePage.module.scss'
-import { endSession, getSession, isLoggedIn } from '../../session'
+import { endSession, getSession, isLoggedIn } from '../../utils/api/session'
 
 export const ProfilePage: FC = () => {
     const dispatch = useDispatch()

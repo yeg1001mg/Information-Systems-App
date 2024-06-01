@@ -1,0 +1,44 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+.container {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    background-color: $neutral-0;
+
+    @media screen and (min-width: 1440px) {
+        padding: 80px 135px 40px 135px;
+    }
+
+    @media screen and (max-width: 1440px) {
+        padding: 16px;
+    }
+
+    .item {
+        @include body-1;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        color: $neutral-9;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            color: $neutral-10;
+        }
+    }
+
+    .currentItem {
+        color: $neutral-10;
+
+        svg > path {
+            fill: $neutral-10;
+        }
+
+        cursor: default;
+    }
+}

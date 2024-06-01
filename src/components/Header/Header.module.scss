@@ -7,11 +7,9 @@
     z-index: 1000;
     display: flex;
     flex-direction: row;
-    gap: 205px;
     align-items: center;
     justify-content: space-between;
     height: 80px;
-    padding: 16px 135px 16px 135px;
     border-bottom: 1px solid $neutral-2;
     background-color: $neutral-0;
 
@@ -24,5 +22,16 @@
 
     .logo {
         cursor: pointer;
+    }
+
+
+    @media screen and (min-width: 1440px) {
+        padding: 16px 135px 16px 135px;
+        gap: 205px;
+    }
+
+    @media screen and (max-width: 1440px) {
+        padding: 16px;
+        gap: 20px;
     }
 }

@@ -1,6 +1,7 @@
 export enum Links {
     Home = '/home',
-    UserProfile = '/profile/:uid',
+    UserProfile = '/profile',
+    // UserProfile = '/profile/:uid',
     SystemsTable = '/systems-table',
     Login = '/login',
     SignUp = '/sign-up',

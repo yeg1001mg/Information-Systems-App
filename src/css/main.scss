@@ -1,0 +1,63 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 300;
+    src: url(./inter/Inter-Thin.ttf);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 400;
+    src: url(./inter/Inter-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 500;
+    src: url(./inter/Inter-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 700;
+    src: url(./inter/Inter-Bold.ttf);
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Inter, sans-serif;
+    overflow-x: hidden;
+    --antd-wave-shadow-color: none;
+}
+
+body {
+    scroll-behavior: smooth;
+    background-color: $neutral-0 !important;
+}
+
+* {
+    font-family: Inter, sans-serif;
+
+    &:focus {
+        outline: -webkit-focus-ring-color auto 0;
+    }
+}
+
+h1 {
+    @include heading-1;
+}
+
+h2 {
+    @include heading-2;
+}
+
+h3 {
+    @include heading-3;
+}
+
+h4 {
+    @include heading-4;
+}

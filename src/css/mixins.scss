@@ -1,0 +1,89 @@
+@import './variables.scss';
+
+// **************************************** typography **************************************** //
+
+@mixin heading-1 {
+    font-weight: 700 !important;
+    font-size: 48px !important;
+    line-height: 58.09px !important;
+    color: $neutral-10;
+}
+
+@mixin heading-2 {
+    font-weight: 700 !important;
+    font-size: 36px !important;
+    line-height: 43.57px !important;
+    color: $neutral-10;
+}
+
+@mixin heading-3 {
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    line-height: 29.05px !important;
+    color: $neutral-10;
+}
+
+@mixin heading-4 {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 24.2px !important;
+    color: $neutral-10;
+}
+
+@mixin subtitle-1 {
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    line-height: 21.78px !important;
+}
+
+@mixin subtitle-2 {
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 21.78px !important;
+}
+
+@mixin body-1 {
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 19.36px !important;
+}
+
+@mixin body-2 {
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 16.94px !important;
+}
+
+@mixin body-2-160 {
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 22.4px !important;
+}
+
+@mixin button-big {
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    line-height: 21.78px !important;
+}
+
+@mixin button-small {
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 16.94px !important;
+}
+
+
+// **************************************** END typography **************************************** //
+
+
+@mixin required-field {
+    &:after {
+        content: '*';
+    }
+}
+
+@mixin text-overflow-hidden-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

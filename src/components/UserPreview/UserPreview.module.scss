@@ -1,0 +1,16 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    cursor: default;
+
+    .nameBlock {
+        @include body-1;
+        color: $neutral-8;
+    }
+
+}

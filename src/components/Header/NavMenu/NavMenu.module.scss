@@ -1,0 +1,26 @@
+@import '../../../css/variables.scss';
+@import '../../../css/mixins.scss';
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    @include body-1;
+    color: $neutral-8;
+
+    .menuItem {
+        cursor: pointer;
+
+        &:hover {
+            color: $neutral-9;
+        }
+    }
+
+    .menuItemDisabled {
+        cursor: default;
+
+        &:hover {
+            color: $neutral-8;
+        }
+    }
+}

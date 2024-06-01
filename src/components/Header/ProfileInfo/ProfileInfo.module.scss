@@ -1,0 +1,29 @@
+@import '../../../css/variables.scss';
+@import '../../../css/mixins.scss';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .profileDropdown {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        gap: 18px;
+        align-items: center;
+
+        .dropdownUserPreview {
+            cursor: pointer;
+        }
+
+
+    }
+}
+
+:global {
+    .ant-dropdown-menu-title-content > a {
+        @include body-2;
+        color: $neutral-8;
+    }
+}

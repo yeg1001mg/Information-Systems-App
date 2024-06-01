@@ -33,14 +33,14 @@ export const ProfileInfo: FC = () => {
             {
                 key: 'profile',
                 label: (
-                    <a target="_blank" rel="noopener noreferrer" href={Links.UserProfile}>
+                    <a rel="noopener noreferrer" href={Links.UserProfile}>
                         Мой профиль
                     </a>
                 ),
             }, {
                 key: 'logout',
                 label: (
-                    <a target="_blank" rel="noopener noreferrer"
+                    <a rel="noopener noreferrer"
                        onClick={(e) => {
                            e.preventDefault()
                            endSession();
@@ -49,14 +49,23 @@ export const ProfileInfo: FC = () => {
                         Выйти из профиля
                     </a>
                 ),
-            }] : [{
-            key: 'signup',
-            label: (
-                <a rel="noopener noreferrer" href={Links.SignUp}>
-                    Зарегистрироваться
-                </a>
-            ),
-        }]
+            }] : [
+            {
+                key: 'login',
+                label: (
+                    <a rel="noopener noreferrer"
+                       href={Links.Login}>
+                        Войти
+                    </a>
+                ),
+            }, {
+                key: 'signup',
+                label: (
+                    <a rel="noopener noreferrer" href={Links.SignUp}>
+                        Зарегистрироваться
+                    </a>
+                ),
+            }]
     }, [user, isLoggedIn]);
 
     return (

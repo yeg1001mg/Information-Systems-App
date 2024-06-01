@@ -1,5 +1,7 @@
 import { FC, PropsWithChildren } from 'react'
 import { Header } from '../../../components/Header'
+import { Footer } from '../../../components/Footer';
+import styles from './MainLayout.module.scss'
 
 interface MainLayoutProps {
     showBreadcrumbs?: boolean
@@ -10,12 +12,12 @@ const MainLayout: FC<PropsWithChildren<MainLayoutProps>> = ({
                                                                 showBreadcrumbs = true,
                                                             }) => {
     return (
-        <div>
+        <div className={styles.wrapper}>
             <Header />
             Breadcrumbs
             {/* {showBreadcrumbs && <Breadcrumbs />} */}
-            <div>{children}</div>
-            {/* <Footer /> */}
+            <div className={styles.content}>{children}</div>
+            <Footer />
         </div>
     )
 }

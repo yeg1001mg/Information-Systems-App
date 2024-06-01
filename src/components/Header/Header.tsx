@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ReactComponent as LogoIcon } from './../../images/icons/logo.svg'
 
 import { ProfileInfo } from './ProfileInfo'
-import { NavMenu } from './NavMenu/NavMenu'
+import { NavMenu } from './NavMenu'
 import { useNavigate } from 'react-router';
 import { Links } from '../../constants/routes';
 

@@ -1,24 +1,31 @@
 import React, { FC } from 'react'
 import { Links } from '../../../constants/routes'
 import styles from './NavMenu.module.scss'
-import { useNavigate } from 'react-router'
 import classNames from 'classnames'
+import { notification } from 'antd';
 
 export const NavMenu: FC = () => {
-    const navigate = useNavigate()
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = () => {
+        api.open({
+            message: 'Ooops',
+            description:
+                `Sorry, but you can't use me right now.`,
+        });
+    };
 
     const prepareNavItems = [
         {
             key: 'menu',
             title: 'Меню',
             link: Links.Home,
-            disabled: true,
+            disabled: false,
         },
         {
             key: 'questions',
             title: 'Вопросы и ответы',
             link: Links.Home,
-            disabled: true,
+            disabled: false,
         },
         {
             key: 'about',
@@ -30,6 +37,7 @@ export const NavMenu: FC = () => {
 
     return (
         <div className={styles.menu}>
+            {contextHolder}
             {prepareNavItems.map((item) => (
                 <div
                     key={item.key}
@@ -37,7 +45,8 @@ export const NavMenu: FC = () => {
                         [styles.menuItemDisabled]: item.disabled,
                     })}
                     onClick={() => {
-                        !item.disabled && navigate(item.link)
+                        !item.disabled && openNotification()
+                        // item.disabled && navigate(item.link)
                     }}
                 >
                     {item.title}

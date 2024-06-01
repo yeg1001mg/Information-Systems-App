@@ -1,0 +1,84 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+.wrapperFooter {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    padding: 80px 135px 96px 135px;
+    background-color: $neutral-0;
+    gap: 40px;
+    height: 570px;
+
+    .contentRow {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .partnersRow {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        border-top: $neutral-2 solid 1px;
+        border-bottom: $neutral-2 solid 1px;
+        border-radius: 3px;
+    }
+
+    .developerRow {
+        display: flex;
+        flex-direction: row;
+        padding-top: 20px;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        @include body-2-160;
+        color: $neutral-7;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .text {
+        @include body-2-160;
+        color: $neutral-9;
+    }
+
+    .bold {
+        @include heading-4;
+    }
+
+    .phones {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .text {
+            @include body-2;
+            color: $neutral-9;
+        }
+
+        .link {
+            @include body-2;
+            color: $primary-color;
+            cursor: pointer;
+        }
+    }
+
+    .partner {
+        padding: 11px 14px 11px 14px;
+        border-radius: 5px;
+        background-color: $neutral-2;
+
+        @include body-2;
+        color: $neutral-6;
+    }
+
+}

@@ -43,7 +43,7 @@ export const TextInput: FC<ITextInput> = (props) => {
     } = props
 
     const innerValidation = useMemo(() => {
-        if (required && initialTriggered) {
+        if (required && initialTriggered && !readOnly) {
             return (value?.length || 0) > 0
         }
         return true

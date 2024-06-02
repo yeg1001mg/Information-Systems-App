@@ -3,7 +3,105 @@
 
 .container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 40px;
+    padding-right: 335px;
+
+    div[class*='label'] {
+        color: $neutral-6;
+    }
+
+
+    .FIO {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid $neutral-2;
+
+
+        .userPreviewWrapper {
+            gap: 20px;
+        }
+
+        .userPreviewUsername {
+            @include heading-3;
+        }
+
+        .statuses {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+
+            .card {
+                @include body-2;
+                padding: 5px 10px 5px 10px;
+                border-radius: 5px;
+                align-items: center;
+                justify-content: center;
+                height: fit-content;
+            }
+
+            .active {
+                background-color: $green-1;
+                color: $green-2;
+            }
+
+            .user {
+                background-color: $primary-color;
+                color: $neutral-0;
+            }
+        }
+
+    }
+
+    .contentCard {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid $neutral-2;
+
+        .label {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            @include subtitle-1;
+            color: $neutral-10;
+
+            .editBtn {
+                cursor: pointer;
+                @include body-1;
+                color: $primary-color;
+            }
+        }
+
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+
+            .column {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                gap: 20px;
+            }
+
+            .lonelyColumn {
+                //-gap
+                width: calc(50% - 20px);
+            }
+        }
+    }
+
+    .saveBtn {
+        width: 270px;
+    }
+
+    .disabled {
+        cursor: not-allowed;
+    }
 }

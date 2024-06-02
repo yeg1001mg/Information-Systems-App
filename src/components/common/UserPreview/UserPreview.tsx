@@ -4,7 +4,7 @@ import { ReactComponent as UserEmptyIcon } from '../../../images/icons/userEmpty
 import classNames from 'classnames'
 
 export interface UserPreviewProps {
-    username: string
+    username?: string | null
     classes?: {
         wrapperClassName?: string
         usernameClassName?: string
@@ -32,7 +32,7 @@ export const UserPreview: FC<UserPreviewProps> = ({
                 <UserEmptyIcon height={avatar?.height || 48} width={avatar?.width || 48} />
             )}
             <div className={classNames(styles.nameBlock, classes?.usernameClassName)}>
-                {username}
+                {username || 'Имя Фамилия'}
             </div>
         </div>
     )

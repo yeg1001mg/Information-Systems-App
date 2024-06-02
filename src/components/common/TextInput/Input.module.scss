@@ -12,9 +12,9 @@
     }
 
     .error {
+        margin: 0;
         @include body-2;
         color: red;
-        margin-bottom: unset;
     }
 }
 
@@ -53,10 +53,31 @@
     .ant-input-affix-wrapper[disabled],
     .ant-input[readonly],
     .ant-input-number-input[readonly],
-    .ant-input-affix-wrapper[readonly] {
-        background-color: $neutral-2;
-        color: $neutral-8;
+    .ant-input-affix-wrapper[readonly],
+    .ant-input-outlined.ant-input-disabled,
+    .ant-input-outlined[disabled] {
+        background-color: $neutral-3;
+        border-color: $neutral-3;
+        color: $neutral-10;
         cursor: not-allowed;
+
+        &:focus, &:focus-within {
+            border-color: $neutral-3;
+            box-shadow: none;
+        }
+    }
+
+    .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
+    .ant-input-outlined.ant-input-disabled:hover:not([disabled]) {
+        border-color: $neutral-3;
+    }
+
+    .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):focus {
+        border-color: $neutral-4;
+    }
+
+    .ant-input-outlined:focus-within {
+        box-shadow: none;
     }
 
     .ant-input[readonly],
@@ -68,19 +89,23 @@
     .ant-input-status-error:not(.ant-input-disabled):not(
             .ant-input-borderless
         ).ant-input,
+    .ant-input-outlined.ant-input-status-error:not(.ant-input-disabled),
     .ant-input-affix-wrapper-status-error:not(
             .ant-input-affix-wrapper-disabled
         ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
     .ant-input-affix-wrapper-disabled.ant-input-affix-wrapper-status-error,
     .ant-input-disabled.ant-input-status-error {
         border: 1px solid red;
+        background-color: $neutral-3;
 
         &:hover {
             border-color: darkred;
+            background-color: $neutral-3;
         }
 
-        &:focus {
+        &:focus, &:focus-within {
             border-color: darkred;
+            background-color: $neutral-3;
         }
     }
 

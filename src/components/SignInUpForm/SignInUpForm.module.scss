@@ -1,0 +1,24 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 430px;
+
+    .header {
+        @include heading-1;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .errorMsg {
+            @include body-2;
+            color: red;
+        }
+    }
+}

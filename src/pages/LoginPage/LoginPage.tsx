@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigate } from 'react-router'
@@ -7,22 +7,17 @@ import styles from './LoginPage.module.scss'
 import { createUser, signInUser } from '../../utils/api/firebaseAPI'
 import { startSession, UserType } from '../../utils/api/session'
 import { AuthActions } from '../../redux/reducers/auth';
+import { SignInUpForm } from '../../components/SignInUpForm';
+import { Button, ButtonSizes, ButtonTypes } from '../../components/Button';
+import { notification } from 'antd';
 
 export const LoginPage: FC = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const onLoginSubmit = (email: string, password: string) => {
 
-    const onLoginSubmit = async () => {
-        if (!email || !password) {
-            console.log('Please enter your username and password.')
-            return
-        }
-
-        dispatch(AuthActions.getCurrentUser({ email, password }))
+        // dispatch(AuthActions.getCurrentUser({ email, password }))
         /* try {
             let loginResponse = await signInUser(email, password)
             startSession(loginResponse.user as UserType)
@@ -32,42 +27,31 @@ export const LoginPage: FC = () => {
         } */
     }
 
-    const onRegisterSubmit = async () => {
-        try {
-            let registerResponse = await createUser(email, password)
-            startSession(registerResponse.user as UserType)
-            navigate('/user')
-        } catch (error: any) {
-            console.error(error.message)
-        }
-    }
-    const userData = {}
-    // useSelector(EmployeeSelectors.getUserData)
+    // const onRegisterSubmit = async () => {
+    //     try {
+    //         let registerResponse = await createUser(email, password)
+    //         startSession(registerResponse.user as UserType)
+    //         navigate('/user')
+    //     } catch (error: any) {
+    //         console.error(error.message)
+    //     }
+    // }
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = () => {
+        api.open({
+            message: 'Ooops',
+            description:
+                `Sorry, but you can't use me right now.`,
+        });
+    };
 
     return (
         <div className={styles.container}>
-            <div>Login</div>
-            {/* {error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>} */}
-            <div>
-                <textarea
-                    title='Email'
-                    autoComplete='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <textarea
-                    title='Password'
-                    // type="password"
-                    autoComplete='new-password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                {/* <button onClick={onRegisterSubmit}>Login</button> */}
-                <button onClick={onLoginSubmit}>Login</button>
-                {/* <Box sx={{ mt: 2 }}> */}
-                {/*     Don't have an account yet? <Link href="/register">Register</Link> */}
-                {/* </Box> */}
-            </div>
+            {contextHolder}
+            <SignInUpForm signIn handleSubmit={onLoginSubmit} />
+            <Button className={styles.authBtn} type={ButtonTypes.secondary} buttonSize={ButtonSizes.big} onClick={openNotification}>Авторизация с
+                использованием ЕС ИФЮЛ</Button>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import Root from '../pages/Root/Root'
 import { SystemsTablePage } from '../pages/SystemsTablePage'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
+import { SignUpPage } from '../pages/SignUpPage';
 
 const routes = [
     {
@@ -19,7 +20,7 @@ const routes = [
                 element: <LoginPage />,
             }, {
                 path: Links.SignUp,
-                element: <LoginPage />, //todo
+                element: <SignUpPage />,
             },
             {
                 path: Links.UserProfile,

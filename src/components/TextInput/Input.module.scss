@@ -1,0 +1,139 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .label {
+        @include body-2;
+        color: $neutral-8;
+    }
+
+    .error {
+        @include body-2;
+        color: red;
+        margin-bottom: unset;
+    }
+}
+
+
+:global {
+    .ant-input::placeholder,
+    .ant-input[disabled]::placeholder,
+    .ant-input-number-input::placeholder,
+    .ant-input-number-input[disabled]::placeholder {
+        color: $neutral-4;
+    }
+
+    .ant-input,
+    .ant-input-number-input,
+    .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled),
+    .ant-input-affix-wrapper-disabled {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        @include body-1;
+        color: $neutral-10;
+        background-color: $neutral-3;
+        height: 56px;
+        border-radius: 5px;
+        padding: 17px 18px 17px 18px;
+        border: 1px solid transparent;
+
+        &:hover, &:focus {
+            border: 1px solid $neutral-4;
+            background-color: $neutral-3;
+        }
+    }
+
+    .ant-input[disabled],
+    .ant-input-number-input[disabled],
+    .ant-input-affix-wrapper[disabled],
+    .ant-input[readonly],
+    .ant-input-number-input[readonly],
+    .ant-input-affix-wrapper[readonly] {
+        background-color: $neutral-2;
+        color: $neutral-8;
+        cursor: not-allowed;
+    }
+
+    .ant-input[readonly],
+    .ant-input-number-input[readonly],
+    .ant-input-affix-wrapper[readonly] {
+        color: $neutral-10;
+    }
+
+    .ant-input-status-error:not(.ant-input-disabled):not(
+            .ant-input-borderless
+        ).ant-input,
+    .ant-input-affix-wrapper-status-error:not(
+            .ant-input-affix-wrapper-disabled
+        ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+    .ant-input-affix-wrapper-disabled.ant-input-affix-wrapper-status-error,
+    .ant-input-disabled.ant-input-status-error {
+        border: 1px solid red;
+
+        &:hover {
+            border-color: darkred;
+        }
+
+        &:focus {
+            border-color: darkred;
+        }
+    }
+
+    .ant-input-affix-wrapper > input.ant-input {
+        background-color: transparent;
+    }
+
+    .ant-input-prefix {
+        svg > path {
+            fill: $neutral-4;
+        }
+    }
+
+    .ant-input-suffix {
+        cursor: pointer;
+
+        svg {
+            width: 24px !important;
+            height: 24px !important;
+
+            & > path {
+                fill: $neutral-4;
+            }
+        }
+    }
+
+    .ant-input-clear-icon {
+        display: flex;
+
+        & svg > path {
+            fill: $neutral-4;
+        }
+    }
+
+    .ant-input-number-status-error:not(.ant-input-number-disabled):not(
+            .ant-input-number-borderless
+        ).ant-input-number {
+        &:focus-within,
+        &:active {
+            box-shadow: unset !important;
+        }
+    }
+
+
+    .ant-input:has(+ .ant-input-suffix),
+    .ant-input-status-error:not(.ant-input-disabled):not(
+            .ant-input-borderless
+        ).ant-input:has(+ .ant-input-suffix) {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.required {
+    @include required-field();
+}

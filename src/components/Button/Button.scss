@@ -1,0 +1,136 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+@mixin set_colors(
+    $color,
+    $background,
+    $border,
+    $svg,
+    $color_hover,
+    $background_hover,
+    $border_hover,
+    $svg_hover,
+    $color_focus,
+    $background_focus,
+    $border_focus,
+    $svg_focus
+) {
+    color: $color;
+    background: $background;
+    border: 1px solid $border;
+
+    svg {
+        path {
+            fill: $svg;
+        }
+    }
+
+    &:hover {
+        color: $color_hover;
+        background: $background_hover;
+        border: 1px solid $border_hover;
+
+        svg {
+            path {
+                fill: $svg_hover;
+            }
+        }
+    }
+
+    &:focus,
+    &:active {
+        color: $color_focus;
+        background: $background_focus;
+        border: 1px solid $border_focus;
+
+        svg {
+            path {
+                fill: $svg_focus;
+            }
+        }
+    }
+}
+
+.button {
+    border-radius: 5px;
+    border: 1px solid;
+
+    svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    position: relative;
+
+    &:disabled,
+    .button[disabled],
+    &:disabled:hover,
+    &:disabled:focus {
+        cursor: default;
+        background: $neutral-2;
+        color: $neutral-4;
+        border: 1px solid transparent;
+
+        svg > path {
+            fill: $neutral-4;
+        }
+    }
+}
+
+.smallButton {
+    padding: 5px 10px 5px 10px;
+    @include button-small;
+}
+
+.bigButton {
+    padding: 16px 209px 16px 209px;
+    @include button-big;
+}
+
+.iconText {
+    gap: 5px;
+}
+
+.textOnly {
+    padding: 16px 10px 16px 10px;
+}
+
+.primary {
+    @include set_colors(
+                    $neutral-0,
+                    $primary-color,
+                    $primary-color,
+                    $neutral-0,
+                    $neutral-9,
+                    $primary-color,
+                    $primary-color,
+                    $neutral-9,
+                    $neutral-0,
+                    $primary-color,
+                    $primary-color,
+                    $neutral-0,
+    );
+}
+
+.secondary {
+    @include set_colors(
+                    $neutral-8,
+                    $neutral-0,
+                    $neutral-8,
+                    $neutral-8,
+                    $neutral-9,
+                    $neutral-1,
+                    $neutral-9,
+                    $neutral-9,
+                    $neutral-9,
+                    $neutral-1,
+                    $neutral-9,
+                    $neutral-9
+    );
+}
+

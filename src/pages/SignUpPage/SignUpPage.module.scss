@@ -1,0 +1,9 @@
+@import '../../css/variables.scss';
+@import '../../css/mixins.scss';
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 80px;
+}

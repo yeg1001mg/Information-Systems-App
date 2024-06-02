@@ -27,7 +27,7 @@ export const Breadcrumbs: FC = () => {
             if (Links.Home.includes(pathnames[0])) {
                 return breadcrumbsItem('Главная страница', true)
             }
-            if (Links.Login.includes(pathnames[0]) || Links.SignUp.includes(pathnames[0])) {
+            if (Links.SignIn.includes(pathnames[0]) || Links.SignUp.includes(pathnames[0])) {
                 return breadcrumbsItem('Вернуться на главную', false)
             }
             if (Links.SystemsTable.includes(pathnames[0])) {

@@ -3,7 +3,7 @@ export enum Links {
     UserProfile = '/profile',
     // UserProfile = '/profile/:uid',
     SystemsTable = '/systems-table',
-    Login = '/login',
+    SignIn = '/sign-in',
     SignUp = '/sign-up',
     NonExistent = '*',
 }

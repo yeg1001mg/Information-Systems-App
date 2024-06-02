@@ -1,5 +1,5 @@
 import { expectSaga } from 'redux-saga-test-plan'
-import { getCurrentUser } from '../index'
+import { signInRequest } from '../index'
 import { call } from 'redux-saga/effects'
 import { responseWrapper } from '../../../../utils/tests'
 import {
@@ -18,7 +18,7 @@ describe('Tests for Auth Saga', () => {
         }
 
         it('works properly on api response', () => {
-            return expectSaga(getCurrentUser)
+            return expectSaga(signInRequest)
                 .withReducer(reducer)
                 .hasFinalState<AuthState>({
                     ...initialState,
@@ -33,7 +33,7 @@ describe('Tests for Auth Saga', () => {
         })
 
         it('works properly on api response error', () => {
-            return expectSaga(getCurrentUser)
+            return expectSaga(signInRequest)
                 .withReducer(reducer)
                 .hasFinalState<AuthState>(initialState)
                 .provide([

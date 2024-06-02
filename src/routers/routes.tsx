@@ -4,7 +4,7 @@ import { ProfilePage } from '../pages/ProfilePage'
 import Root from '../pages/Root/Root'
 import { SystemsTablePage } from '../pages/SystemsTablePage'
 import { HomePage } from '../pages/HomePage'
-import { LoginPage } from '../pages/LoginPage'
+import { SignInPage } from '../pages/SignInPage'
 import { SignUpPage } from '../pages/SignUpPage';
 
 const routes = [
@@ -16,8 +16,8 @@ const routes = [
                 element: <HomePage />,
             },
             {
-                path: Links.Login,
-                element: <LoginPage />,
+                path: Links.SignIn,
+                element: <SignInPage />,
             }, {
                 path: Links.SignUp,
                 element: <SignUpPage />,

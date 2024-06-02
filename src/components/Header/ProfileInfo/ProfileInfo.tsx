@@ -1,69 +1,56 @@
-import React, { FC, useEffect, useMemo } from 'react'
+import React, { FC, useMemo } from 'react'
 import styles from './ProfileInfo.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { ReactComponent as NotificationsIcon } from './../../../images/icons/notifications.svg'
 import { ReactComponent as VerticalLineIcon } from './../../../images/icons/line.svg'
 import { ReactComponent as UpperArrowIcon } from './../../../images/icons/upperArrow.svg'
-import { UserPreview } from '../../UserPreview';
-import { UserInfo } from '@firebase/auth';
-import { Dropdown, MenuProps, Space } from 'antd';
+import { UserPreview } from '../../common/UserPreview';
+import { Dropdown, MenuProps } from 'antd';
 import { Links } from '../../../constants/routes';
 import { useNavigate } from 'react-router';
 import { endSession, isLoggedIn as getSessionAccessToken } from '../../../utils/api/session';
+import { AuthActions, AuthSelectors } from '../../../redux/reducers/auth';
 
 const loginPlaceholder = 'Вход в аккаунт';
 
 
 export const ProfileInfo: FC = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const user = useSelector(AuthSelectors.getCurrentUser)
-    const user: any = undefined;
+    const user = useSelector(AuthSelectors.getCurrentUser)
 
-    const isLoggedIn = useMemo(() => !!user && getSessionAccessToken(), []);
+    const isLoggedIn = useMemo(() => !!user && getSessionAccessToken(), [user]);
 
-    // useEffect(() => {
-    //     if (!user && isLoggedIn) {
-    //         dispatch(AuthActions.getCurrentUser())
-    //     }
-    // }, [user, isLoggedIn])
+    const onLogout = (e: any) => {
+        e.preventDefault()
+        endSession();
+        dispatch(AuthActions.logout())
+        navigate(Links.SignIn)
+    }
+
 
     const profileDropdownMenuItems: MenuProps['items'] = useMemo(() => {
         return !!user && isLoggedIn ? [
             {
                 key: 'profile',
                 label: (
-                    <a rel="noopener noreferrer" href={Links.UserProfile}>
-                        Мой профиль
-                    </a>
+                    <div onClick={() => navigate(Links.UserProfile)}>Мой профиль</div>
                 ),
             }, {
                 key: 'logout',
                 label: (
-                    <a rel="noopener noreferrer"
-                       onClick={(e) => {
-                           e.preventDefault()
-                           endSession();
-                           navigate(Links.Login)
-                       }}>
-                        Выйти из профиля
-                    </a>
+                    <div onClick={onLogout}>Выйти из профиля</div>
                 ),
             }] : [
             {
-                key: 'login',
+                key: 'signin',
                 label: (
-                    <a rel="noopener noreferrer"
-                       href={Links.Login}>
-                        Войти
-                    </a>
+                    <div onClick={() => navigate(Links.SignIn)}>Войти</div>
                 ),
             }, {
                 key: 'signup',
                 label: (
-                    <a rel="noopener noreferrer" href={Links.SignUp}>
-                        Зарегистрироваться
-                    </a>
+                    <div onClick={() => navigate(Links.SignUp)}>Зарегистрироваться</div>
                 ),
             }]
     }, [user, isLoggedIn]);
@@ -83,8 +70,8 @@ export const ProfileInfo: FC = () => {
             >
                 <div className={styles.profileDropdown}>
                     <UserPreview
-                        url={isLoggedIn ? user?.photoURL : undefined}
-                        username={isLoggedIn ? user?.displayName : loginPlaceholder}
+                        // url={isLoggedIn ? (!!user?.photoURL?user?.photoURL:undefined) : undefined}
+                        username={isLoggedIn ? user?.displayName || '' : loginPlaceholder}
                         classes={{ wrapperClassName: styles.dropdownUserPreview }} />
                     <UpperArrowIcon />
                 </div>

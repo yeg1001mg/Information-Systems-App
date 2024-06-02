@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styles from './UserPreview.module.scss'
-import { ReactComponent as UserEmptyIcon } from './../../images/icons/userEmptyIcon.svg'
+import { ReactComponent as UserEmptyIcon } from '../../../images/icons/userEmptyIcon.svg'
 import classNames from 'classnames'
 
 export interface UserPreviewProps {

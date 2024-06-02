@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import styles from './SignInUpForm.module.scss'
-import { TextInput } from '../TextInput';
-import { Button, ButtonSizes, ButtonTypes } from '../Button';
+import { TextInput } from '../common/TextInput';
+import { Button, ButtonSizes, ButtonTypes } from '../common/Button';
 
 type SignInUpFormProps = {
     signIn: boolean
@@ -79,7 +79,8 @@ export const SignInUpForm: FC<SignInUpFormProps> = ({ signIn = true, handleSubmi
                     onChange={setPassword}
                 />
                 {(errorEmail || errorPassword) && <div className={styles.errorMsg}>{errorEmail || errorPassword}</div>}
-                <Button type={ButtonTypes.primary} buttonSize={ButtonSizes.big} onClick={onSubmit}>Вход</Button>
+                <Button type={ButtonTypes.primary} buttonSize={ButtonSizes.big}
+                        onClick={onSubmit}>{signIn ? 'Вход' : 'Зарегистрироваться'}</Button>
             </div>
         </div>)
 }

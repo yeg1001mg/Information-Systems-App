@@ -3,7 +3,7 @@ import { Input } from 'antd'
 import styles from './Input.module.scss'
 import classNames from 'classnames'
 import { EyeOutlined } from '@ant-design/icons';
-import { ReactComponent as EyeSlashIcon } from '../../images/icons/eyeSlash.svg';
+import { ReactComponent as EyeSlashIcon } from '../../../images/icons/eyeSlash.svg';
 
 export interface ITextInput
     extends Omit<Partial<HTMLInputElement>, 'onchange'> {

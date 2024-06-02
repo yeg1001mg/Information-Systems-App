@@ -3,7 +3,16 @@
 
 .container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+
+    .option {
+        cursor: pointer;
+        @include subtitle-1;
+        color: $neutral-9;
+
+        &:hover {
+            color: $neutral-10;
+        }
+    }
 }

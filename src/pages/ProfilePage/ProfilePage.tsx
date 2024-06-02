@@ -1,9 +1,8 @@
-import React, { FC, useMemo, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { produce } from 'immer';
-import { useNavigate } from 'react-router'
 import styles from './ProfilePage.module.scss'
-import { AuthSelectors } from '../../redux/reducers/auth';
+import { AuthActions, AuthSelectors } from '../../redux/reducers/auth';
 import { Button, ButtonSizes, ButtonTypes } from '../../components/common/Button';
 import { UserPreview } from '../../components/common/UserPreview';
 import classNames from 'classnames';
@@ -16,7 +15,6 @@ export type GeneralProfileState = {
     secondName: string
     lastName: string
     identificationNumber: string
-    login: string
     email: string
     phoneNumber: string
     currentPassword: string
@@ -27,19 +25,19 @@ export type GeneralProfileState = {
 
 export const ProfilePage: FC = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const userData = useSelector(AuthSelectors.getCurrentUser);
+    const userAdditionalData = useSelector(AuthSelectors.getCurrentUserAdditionalData);
 
-    const onSave = () => {
-        console.log('молодец')
-    }
+    useEffect(() => {
+        !!userData?.uid && dispatch(AuthActions.getCurrentUserProfileData({ uid: userData?.uid || '' }))
+    }, [userData]);
+
 
     const INITIAL_STATE: GeneralProfileState = {
-        firstName: 'firstName',
+        firstName: '',
         secondName: '',
         lastName: '',
         identificationNumber: '',
-        login: '',
         email: '',
         phoneNumber: '',
         currentPassword: '',
@@ -56,18 +54,49 @@ export const ProfilePage: FC = () => {
         );
     }
 
+    useEffect(() => {
+        !!userAdditionalData &&
+        setGeneralState({ ...INITIAL_STATE, ...userAdditionalData })
+    }, [userAdditionalData]);
+
+
     const [editContacts, setEditContacts] = useState(false);
     const [editPassword, setEditPassword] = useState(false);
 
     const isValidConformedPassword = useMemo(() => generalState.newPassword === generalState.conformedPassword, [generalState.newPassword, generalState.conformedPassword]);
-    const isValidPhoneNumber = useMemo(() => generalState.phoneNumber.length ? /^\+375\d{9}$/.test(generalState.phoneNumber) : true, [generalState.phoneNumber]);
-    const isValidForm = useMemo(() => isValidConformedPassword && isValidPhoneNumber, [isValidConformedPassword && isValidPhoneNumber]);
+    const isValidPhoneNumber = useMemo(() => generalState.phoneNumber.length ? /^\+\d{12}$/.test(generalState.phoneNumber) : true, [generalState.phoneNumber]);
+    const isValidForm = useMemo(() => isValidConformedPassword && isValidPhoneNumber && generalState.firstName.length !== 0 && generalState.secondName.length !== 0 && generalState.lastName.length !== 0 && generalState.identificationNumber.length !== 0, [isValidConformedPassword && isValidPhoneNumber, generalState]);
+
+
+    const onSave = () => {
+        dispatch(AuthActions.updateUserProfile({
+            uid: userData?.uid || '',
+            additionalData: {
+                firstName: generalState.firstName,
+                secondName: generalState.secondName,
+                lastName: generalState.lastName,
+                identificationNumber: generalState.identificationNumber,
+                phoneNumber: generalState.phoneNumber,
+                email: generalState.email,
+            }
+        }))
+
+        if (generalState.newPassword.length !== 0 && generalState.conformedPassword.length !== 0 && isValidConformedPassword) {
+            dispatch(AuthActions.updatePassword({
+                newPassword: generalState.newPassword
+            }))
+        }
+
+        dispatch(AuthActions.getCurrentUserProfileData({
+            uid: userData?.uid || '',
+        }))
+    }
 
 
     return userData && <div className={styles.container}>
         <div className={styles.FIO}>
             <UserPreview
-                username={userData.displayName}
+                username={userData.displayName || userAdditionalData ? `${userAdditionalData?.firstName} ${userAdditionalData?.lastName}` : ''}
                 url={userData.photoURL || ''}
                 avatar={{ width: '64px', height: '64px' }}
                 classes={{
@@ -85,7 +114,6 @@ export const ProfilePage: FC = () => {
             <div className={styles.row}>
                 <div className={styles.column}>
                     <TextInput
-                        readOnly
                         required
                         value={generalState.firstName}
                         name={'firstName'}
@@ -95,7 +123,6 @@ export const ProfilePage: FC = () => {
                         onChange={(value) => onStateUpdate('firstName', value)}
                     />
                     <TextInput
-                        readOnly
                         required
                         value={generalState.secondName}
                         name={'secondName'}
@@ -107,17 +134,17 @@ export const ProfilePage: FC = () => {
                     <TextInput
                         readOnly
                         required
-                        value={generalState.login}
+                        value={userData.email}
                         name={'login'}
                         type={'text'}
                         label={'Логин'}
                         placeholder={'Введите логин'}
-                        onChange={(value) => onStateUpdate('login', value)}
+                        onChange={() => {
+                        }}
                     />
                 </div>
                 <div className={styles.column}>
                     <TextInput
-                        readOnly
                         required
                         value={generalState.lastName}
                         name={'lastName'}
@@ -127,7 +154,6 @@ export const ProfilePage: FC = () => {
                         onChange={(value) => onStateUpdate('lastName', value)}
                     />
                     <TextInput
-                        readOnly
                         required
                         value={generalState.identificationNumber}
                         name={'identificationNumber'}
@@ -223,7 +249,6 @@ export const ProfilePage: FC = () => {
                         errorText={!isValidConformedPassword ? 'Пароли не совпадают' : ''}
                     />
                 </div>
-
             </div>
         </div>
         <Button

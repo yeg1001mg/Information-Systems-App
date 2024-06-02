@@ -8,7 +8,7 @@ import { UserPreview } from '../../common/UserPreview';
 import { Dropdown, MenuProps } from 'antd';
 import { Links } from '../../../constants/routes';
 import { useNavigate } from 'react-router';
-import { endSession, isLoggedIn as getSessionAccessToken } from '../../../utils/api/session';
+import { isLoggedIn as getSessionAccessToken } from '../../../utils/api/session';
 import { AuthActions, AuthSelectors } from '../../../redux/reducers/auth';
 
 const loginPlaceholder = 'Вход в аккаунт';
@@ -17,20 +17,20 @@ const loginPlaceholder = 'Вход в аккаунт';
 export const ProfileInfo: FC = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const user = useSelector(AuthSelectors.getCurrentUser)
+    const userData = useSelector(AuthSelectors.getCurrentUser)
+    const userAdditionalData = useSelector(AuthSelectors.getCurrentUserAdditionalData);
 
-    const isLoggedIn = useMemo(() => !!user && getSessionAccessToken(), [user]);
+    const isLoggedIn = useMemo(() => !!userData && getSessionAccessToken(), [userData]);
 
     const onLogout = (e: any) => {
         e.preventDefault()
-        endSession();
         dispatch(AuthActions.logout())
         navigate(Links.SignIn)
     }
 
 
     const profileDropdownMenuItems: MenuProps['items'] = useMemo(() => {
-        return !!user && isLoggedIn ? [
+        return !!userData && isLoggedIn ? [
             {
                 key: 'profile',
                 label: (
@@ -53,7 +53,7 @@ export const ProfileInfo: FC = () => {
                     <div onClick={() => navigate(Links.SignUp)}>Зарегистрироваться</div>
                 ),
             }]
-    }, [user, isLoggedIn]);
+    }, [userData, isLoggedIn]);
 
     return (
         <div className={styles.container}>
@@ -70,8 +70,8 @@ export const ProfileInfo: FC = () => {
             >
                 <div className={styles.profileDropdown}>
                     <UserPreview
-                        // url={isLoggedIn ? (!!user?.photoURL?user?.photoURL:undefined) : undefined}
-                        username={isLoggedIn ? user?.displayName || '' : loginPlaceholder}
+                        url={isLoggedIn ? userData?.photoURL || '' : ''}
+                        username={isLoggedIn ? userData?.displayName || !!userAdditionalData ? `${userAdditionalData?.firstName} ${userAdditionalData?.lastName}` : '' : loginPlaceholder}
                         classes={{ wrapperClassName: styles.dropdownUserPreview }} />
                     <UpperArrowIcon />
                 </div>

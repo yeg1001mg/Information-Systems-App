@@ -1,8 +1,12 @@
 import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore';
+import { doc, setDoc, getDoc, } from 'firebase/firestore';
+
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     getAuth,
+    updatePassword
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -15,6 +19,9 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
+const db = getFirestore(app);
+
+const collectionName = 'users'
 
 export const createUser = async (email: string, password: string) => {
     return createUserWithEmailAndPassword(getAuth(app), email, password)
@@ -22,4 +29,20 @@ export const createUser = async (email: string, password: string) => {
 
 export const signInUser = async (email: string, password: string) => {
     return signInWithEmailAndPassword(getAuth(app), email, password)
+}
+
+export const addUserData = async (uid: string, additionalData: any) => {
+    return setDoc(doc(db, collectionName, uid), additionalData);
+}
+
+export const getUserProfile = async (uid: string) => {
+    return getDoc(doc(db, collectionName, uid));
+}
+
+export const updateUserPassword = async (newPassword: string) => {
+    const auth = getAuth();
+
+    if (auth.currentUser) {
+        return updatePassword(auth.currentUser, newPassword)
+    }
 }

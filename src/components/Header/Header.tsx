@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import styles from './Header.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
 import { ReactComponent as LogoIcon } from './../../images/icons/logo.svg'
 
 import { ProfileInfo } from './ProfileInfo'

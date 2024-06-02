@@ -9,7 +9,7 @@ import classNames from 'classnames';
 export const Breadcrumbs: FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const pathnames = location.pathname.split('/').filter(x => x);
+    const pathnames = useMemo(() => location.pathname.split('/').filter(x => x), [location]);
 
     const renderBreadcrumbs = useMemo(() => {
 

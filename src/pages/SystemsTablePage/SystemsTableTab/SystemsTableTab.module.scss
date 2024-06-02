@@ -9,7 +9,11 @@
     color: $primary-color;
     background-color: $neutral-1;
     margin-top: 80px;
-    //padding: 80px 135px 80px 135px;
+    padding-top: 80px;
+    margin-left: -135px;
+    padding-left: 135px;
+    margin-right: -135px;
+    padding-right: 135px;
     gap: 40px;
 
     .searchPanel {

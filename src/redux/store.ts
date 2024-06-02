@@ -4,11 +4,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootSaga from './sagas'
 
 import authReducer from './reducers/auth'
-// import systemsTableReducer from './reducers/systemsTable'
+import systemsTableReducer from './reducers/systemsTable'
 
 const reducers = combineReducers({
     authReducer,
-    // systemsTableReducer,
+    systemsTableReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()

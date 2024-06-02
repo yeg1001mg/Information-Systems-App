@@ -1,0 +1,12 @@
+@import '../../../css/variables.scss';
+@import '../../../css/mixins.scss';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    @include heading-2;
+    color: $primary-color;
+}

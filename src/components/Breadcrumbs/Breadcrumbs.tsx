@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react'
 import styles from './Breadcrumbs.module.scss'
-import { ReactComponent as RightArrowIcon } from './../../images/icons/rightArrow.svg'
+import { ReactComponent as RightArrowIcon } from '../../images/icons/leftArrow.svg'
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { Links } from '../../constants/routes';

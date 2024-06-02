@@ -3,7 +3,16 @@
 
 .container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 80px;
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .title {
+            @include heading-2;
+        }
+    }
 }

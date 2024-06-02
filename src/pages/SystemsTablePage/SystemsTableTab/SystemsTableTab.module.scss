@@ -1,0 +1,189 @@
+@import '../../../css/variables.scss';
+@import '../../../css/mixins.scss';
+
+.container {
+
+    display: flex;
+    flex-direction: column;
+    @include heading-2;
+    color: $primary-color;
+    background-color: $neutral-1;
+    margin-top: 80px;
+    //padding: 80px 135px 80px 135px;
+    gap: 40px;
+
+    .searchPanel {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 870px;
+
+        .label {
+            @include subtitle-1;
+            color: $neutral-8;
+        }
+    }
+
+    .buttonsPanel {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .group {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+
+            svg {
+                cursor: pointer;
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+
+
+    .tableContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .tableHeader {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .label {
+                @include subtitle-1;
+                color: $neutral-8;
+            }
+
+            .quantity {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                @include body-1;
+                color: $neutral-6;
+                height: 29px;
+                justify-content: center;
+                align-items: center;
+
+                .quantityBtn {
+                    cursor: pointer;
+                    padding: 5px 10px 5px 10px;
+                    border-radius: 5px;
+                    @include body-1;
+                    color: $neutral-7;
+                    background-color: $neutral-0;
+                    outline: 1px solid $neutral-7;
+
+                    &:hover {
+                        color: $neutral-9;
+                    }
+                }
+
+                .activeQuantityBtn {
+                    color: $neutral-0;
+                    background-color: $primary-color;
+                    outline: 1px solid $primary-color;
+                }
+            }
+        }
+
+        :global {
+
+
+            .ant-table-wrapper .ant-table-pagination.ant-pagination {
+                margin-top: 40px;
+                margin-bottom: 80px;
+
+                .ant-pagination-item {
+                    border: none;
+                    @include body-1;
+                    color: $neutral-9;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px 5px 10px 5px;
+                    gap: 10px;
+                    border-radius: 2px;
+                }
+
+                .ant-pagination-item-active {
+                    background-color: $primary-color;
+
+                    & > a {
+                        color: $neutral-0 !important;
+                    }
+                }
+            }
+
+
+            .ant-pagination-next button,
+            .ant-pagination-prev button,
+            {
+                color: $neutral-9 !important;
+            }
+
+            .ant-table-cell {
+                @include subtitle-1;
+                padding: 0 !important;
+                box-sizing: border-box;
+                background-color: $neutral-0;
+                outline: 5px solid $neutral-1;
+                color: $primary-color !important;
+
+
+                &:first-of-type {
+                    color: $neutral-10 !important;
+                    background-color: $neutral-1;
+
+                    border-width: 1px 0 1px 1px;
+                    border-style: solid;
+                    border-color: $neutral-2;
+                }
+
+                &:last-of-type {
+                    border-width: 1px 1px 1px 0;
+                    border-style: solid;
+                    border-color: $neutral-2;
+                }
+            }
+        }
+    }
+
+    :global {
+
+        .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+            border-start-start-radius: 10px;
+            border-end-start-radius: 10px;
+        }
+
+        .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled) {
+            background-color: $neutral-0;
+            border: 1px solid $neutral-2;
+            height: 61px;
+            color: $neutral-10;
+            @include body-1;
+        }
+
+        .ant-input-search .ant-input-search-button {
+            height: 61px;
+            background-color: $primary-color;
+            padding: 17px 15px 17px 15px;
+            @include button-big;
+            border-start-end-radius: 10px !important;
+            border-end-end-radius: 10px !important;
+
+            width: 170px;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $neutral-9;
+            }
+        }
+    }
+
+}
+

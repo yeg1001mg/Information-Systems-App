@@ -82,8 +82,13 @@
     }
 }
 
+.textOnly {
+    padding: 16px 10px 16px 10px;
+}
+
 .smallButton {
     padding: 5px 10px 5px 10px;
+    height: 34px;
     @include button-small;
 }
 
@@ -96,9 +101,6 @@
     gap: 5px;
 }
 
-.textOnly {
-    padding: 16px 10px 16px 10px;
-}
 
 .primary {
     @include set_colors(

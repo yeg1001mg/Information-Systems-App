@@ -1,0 +1,39 @@
+@import '../../../css/variables.scss';
+@import '../../../css/mixins.scss';
+
+.tabs {
+    :global {
+        .ant-tabs-nav {
+            margin: unset;
+        }
+
+        .ant-tabs-tab {
+            @include subtitle-2;
+            margin: 0 20px;
+            padding: 13px 0;
+            color: $neutral-8;
+
+            &:hover {
+                color: $neutral-9;
+            }
+        }
+
+        .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+            @include subtitle-1;
+            color: $primary-color;
+            transition: none;
+        }
+
+        .ant-tabs .ant-tabs-tab + .ant-tabs-tab {
+            margin: 0;
+        }
+
+        .ant-tabs-ink-bar {
+            background: $primary-color !important;
+        }
+
+        .ant-tabs-nav::before, {
+            border: none;
+        }
+    }
+}

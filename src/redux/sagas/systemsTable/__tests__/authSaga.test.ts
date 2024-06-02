@@ -7,9 +7,8 @@ import {
     default as reducer,
 } from '../../../reducers/auth'
 import { AuthState } from '../../../reducers/auth/types'
-import { signInUser } from '../../../../utils/api/firebaseAPI';
-import { signInRequest } from '../../auth';
-
+import { signInUser } from '../../../../utils/api/firebaseAPI'
+import { signInRequest } from '../../auth'
 
 describe('Tests for Auth Saga', () => {
     describe('getCurrentUser function', () => {

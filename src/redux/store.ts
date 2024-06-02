@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
 import rootSaga from './sagas'
 
 import authReducer from './reducers/auth'
@@ -15,7 +15,8 @@ const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
     reducer: reducers,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(sagaMiddleware),
 })
 
 sagaMiddleware.run(rootSaga)

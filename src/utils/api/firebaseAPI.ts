@@ -1,12 +1,12 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore';
-import { doc, collection, setDoc, getDoc, getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore'
+import { doc, collection, setDoc, getDoc, getDocs } from 'firebase/firestore'
 
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     getAuth,
-    updatePassword
+    updatePassword,
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -19,7 +19,7 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-const db = getFirestore(app);
+const db = getFirestore(app)
 
 const usersCollectionName = 'users'
 const tableCollectionName = 'systems_table'
@@ -33,15 +33,15 @@ export const signInUser = async (email: string, password: string) => {
 }
 
 export const addUserData = async (uid: string, additionalData: any) => {
-    return setDoc(doc(db, usersCollectionName, uid), additionalData);
+    return setDoc(doc(db, usersCollectionName, uid), additionalData)
 }
 
 export const getUserProfile = async (uid: string) => {
-    return getDoc(doc(db, usersCollectionName, uid));
+    return getDoc(doc(db, usersCollectionName, uid))
 }
 
 export const updateUserPassword = async (newPassword: string) => {
-    const auth = getAuth();
+    const auth = getAuth()
 
     if (auth.currentUser) {
         return updatePassword(auth.currentUser, newPassword)
@@ -49,8 +49,5 @@ export const updateUserPassword = async (newPassword: string) => {
 }
 
 export const getAllDocumentsFromTableCollection = async () => {
-    return await getDocs(collection(db, tableCollectionName));
+    return await getDocs(collection(db, tableCollectionName))
 }
-
-
-

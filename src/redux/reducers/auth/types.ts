@@ -29,7 +29,7 @@ export interface AdditionalUserData {
 }
 
 export interface UpdateUserProfilePayload {
-    uid: string,
+    uid: string
     additionalData: AdditionalUserData
 }
 
@@ -38,5 +38,5 @@ export interface UpdatePasswordPayload {
 }
 
 export interface GetUserProfileDataPayload {
-    uid: string,
+    uid: string
 }

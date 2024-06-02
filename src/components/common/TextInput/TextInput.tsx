@@ -2,8 +2,8 @@ import React, { FC, useMemo, useState } from 'react'
 import { Input } from 'antd'
 import styles from './Input.module.scss'
 import classNames from 'classnames'
-import { EyeOutlined } from '@ant-design/icons';
-import { ReactComponent as EyeSlashIcon } from '../../../images/icons/eyeSlash.svg';
+import { EyeOutlined } from '@ant-design/icons'
+import { ReactComponent as EyeSlashIcon } from '../../../images/icons/eyeSlash.svg'
 
 export interface ITextInput
     extends Omit<Partial<HTMLInputElement>, 'onchange'> {
@@ -62,40 +62,46 @@ export const TextInput: FC<ITextInput> = (props) => {
                     {label}
                 </div>
             )}
-            {type === 'password' ? <Input.Password
-                autoComplete='off'
-                className={className}
-                name={name}
-                type={type}
-                value={value}
-                disabled={disabled}
-                readOnly={readOnly}
-                placeholder={placeholder}
-                onChange={(event) => onChange(event.target.value)}
-                prefix={prefix}
-                onBlur={() => setInitialTriggered(true)}
-                status={isError ? 'error' : ''}
-                allowClear={allowClear}
-                showCount={!!props?.maxLength}
-                maxLength={props?.maxLength}
-                iconRender={(visible: boolean) => (visible ? <EyeOutlined /> : <EyeSlashIcon />)}
-            /> : <Input
-                autoComplete='off'
-                className={className}
-                name={name}
-                type={type}
-                value={value}
-                disabled={disabled}
-                readOnly={readOnly}
-                placeholder={placeholder}
-                onChange={(event) => onChange(event.target.value)}
-                prefix={prefix}
-                onBlur={() => setInitialTriggered(true)}
-                status={isError ? 'error' : ''}
-                allowClear={allowClear}
-                showCount={!!props?.maxLength}
-                maxLength={props?.maxLength}
-            />}
+            {type === 'password' ? (
+                <Input.Password
+                    autoComplete='off'
+                    className={className}
+                    name={name}
+                    type={type}
+                    value={value}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    placeholder={placeholder}
+                    onChange={(event) => onChange(event.target.value)}
+                    prefix={prefix}
+                    onBlur={() => setInitialTriggered(true)}
+                    status={isError ? 'error' : ''}
+                    allowClear={allowClear}
+                    showCount={!!props?.maxLength}
+                    maxLength={props?.maxLength}
+                    iconRender={(visible: boolean) =>
+                        visible ? <EyeOutlined /> : <EyeSlashIcon />
+                    }
+                />
+            ) : (
+                <Input
+                    autoComplete='off'
+                    className={className}
+                    name={name}
+                    type={type}
+                    value={value}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    placeholder={placeholder}
+                    onChange={(event) => onChange(event.target.value)}
+                    prefix={prefix}
+                    onBlur={() => setInitialTriggered(true)}
+                    status={isError ? 'error' : ''}
+                    allowClear={allowClear}
+                    showCount={!!props?.maxLength}
+                    maxLength={props?.maxLength}
+                />
+            )}
             {(errorText || !innerValidation) && (
                 <p
                     className={classNames({

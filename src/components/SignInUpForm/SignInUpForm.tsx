@@ -1,40 +1,41 @@
 import React, { FC, useEffect, useState } from 'react'
 import styles from './SignInUpForm.module.scss'
-import { TextInput } from '../common/TextInput';
-import { Button, ButtonSizes, ButtonTypes } from '../common/Button';
+import { TextInput } from '../common/TextInput'
+import { Button, ButtonSizes, ButtonTypes } from '../common/Button'
 
 type SignInUpFormProps = {
     signIn: boolean
     handleSubmit: (email: string, password: string) => void
 }
 
-
-export const SignInUpForm: FC<SignInUpFormProps> = ({ signIn = true, handleSubmit }) => {
+export const SignInUpForm: FC<SignInUpFormProps> = ({
+    signIn = true,
+    handleSubmit,
+}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
 
     const isValidEmail = (email: string): boolean => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email.trim());
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email.trim())
     }
 
-    const isValidPassword = (password: string): boolean => !(password.trim().length < 6);
-
+    const isValidPassword = (password: string): boolean =>
+        !(password.trim().length < 6)
 
     useEffect(() => {
         if (errorEmail && isValidEmail(email)) {
             setErrorEmail('')
         }
-    }, [email]);
+    }, [email])
 
     useEffect(() => {
         if (errorPassword && isValidPassword(password)) {
             setErrorPassword('')
         }
-    }, [password]);
-
+    }, [password])
 
     const onSubmit = () => {
         if (!email || !password) {
@@ -48,13 +49,13 @@ export const SignInUpForm: FC<SignInUpFormProps> = ({ signIn = true, handleSubmi
         }
 
         if (!isValidPassword(password)) {
-            !signIn && setErrorPassword('Password must contain more than 6 symbols')
+            !signIn &&
+                setErrorPassword('Password must contain more than 6 symbols')
             return
         }
 
         handleSubmit(email, password)
     }
-
 
     return (
         <div className={styles.container}>
@@ -78,9 +79,19 @@ export const SignInUpForm: FC<SignInUpFormProps> = ({ signIn = true, handleSubmi
                     placeholder={'Введите пароль'}
                     onChange={setPassword}
                 />
-                {(errorEmail || errorPassword) && <div className={styles.errorMsg}>{errorEmail || errorPassword}</div>}
-                <Button type={ButtonTypes.primary} buttonSize={ButtonSizes.big}
-                        onClick={onSubmit}>{signIn ? 'Вход' : 'Зарегистрироваться'}</Button>
+                {(errorEmail || errorPassword) && (
+                    <div className={styles.errorMsg}>
+                        {errorEmail || errorPassword}
+                    </div>
+                )}
+                <Button
+                    type={ButtonTypes.primary}
+                    buttonSize={ButtonSizes.big}
+                    onClick={onSubmit}
+                >
+                    {signIn ? 'Вход' : 'Зарегистрироваться'}
+                </Button>
             </div>
-        </div>)
+        </div>
+    )
 }

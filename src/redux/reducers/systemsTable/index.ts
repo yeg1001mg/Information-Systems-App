@@ -1,18 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { SystemsTableState, TableData } from './types';
+import { SystemsTableState, TableData } from './types'
 
 export const initialState: SystemsTableState = {
-    tableData: undefined
+    tableData: undefined,
 }
 
 export const systemsTableSlice = createSlice({
     name: 'systemsTable',
     initialState,
     reducers: {
-        getTableData: (state, action: PayloadAction) => {
-        },
+        getTableData: (state, action: PayloadAction) => {},
         setTableData: (state, action: PayloadAction<TableData>) => {
-            state.tableData = action.payload;
+            state.tableData = action.payload
         },
     },
 })

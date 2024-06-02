@@ -3,11 +3,10 @@ import { SagaGenerator } from '../../@types/common'
 import authSaga from './auth'
 import systemsTableSaga from './systemsTable'
 
-export default function* root(): Generator<AllEffect<SagaGenerator<unknown>>,
+export default function* root(): Generator<
+    AllEffect<SagaGenerator<unknown>>,
     void,
-    unknown> {
-    yield all([
-        authSaga(),
-        systemsTableSaga(),
-    ])
+    unknown
+> {
+    yield all([authSaga(), systemsTableSaga()])
 }

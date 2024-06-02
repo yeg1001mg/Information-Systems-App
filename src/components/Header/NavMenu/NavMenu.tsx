@@ -2,17 +2,16 @@ import React, { FC } from 'react'
 import { Links } from '../../../constants/routes'
 import styles from './NavMenu.module.scss'
 import classNames from 'classnames'
-import { notification } from 'antd';
+import { notification } from 'antd'
 
 export const NavMenu: FC = () => {
-    const [api, contextHolder] = notification.useNotification();
+    const [api, contextHolder] = notification.useNotification()
     const openNotification = () => {
         api.open({
             message: 'Ooops',
-            description:
-                `Sorry, but you can't use me right now.`,
-        });
-    };
+            description: `Sorry, but you can't use me right now.`,
+        })
+    }
 
     const prepareNavItems = [
         {

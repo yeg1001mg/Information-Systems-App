@@ -5,7 +5,7 @@ import Root from '../pages/Root/Root'
 import { SystemsTablePage } from '../pages/SystemsTablePage'
 import { HomePage } from '../pages/HomePage'
 import { SignInPage } from '../pages/SignInPage'
-import { SignUpPage } from '../pages/SignUpPage';
+import { SignUpPage } from '../pages/SignUpPage'
 
 const routes = [
     {
@@ -18,7 +18,8 @@ const routes = [
             {
                 path: Links.SignIn,
                 element: <SignInPage />,
-            }, {
+            },
+            {
                 path: Links.SignUp,
                 element: <SignUpPage />,
             },

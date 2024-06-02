@@ -53,6 +53,7 @@
     "@testing-library/user-event": "^13.2.1",
     "lodash": "^4.17.21",
     "prettier": "^3.2.5",
+    "react-inject-env": "^2.1.0",
     "redux-saga-test-plan": "^4.0.6"
   }
 }

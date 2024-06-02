@@ -8,14 +8,15 @@ import {
     getAuth,
     updatePassword,
 } from 'firebase/auth'
+import { env } from '../../env';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyArR5Udbm8B9YAihlhnpGZ2FemvjyiBHUg',
-    authDomain: 'information-systems-app-424716.firebaseapp.com',
-    projectId: 'information-systems-app-424716',
-    storageBucket: 'information-systems-app-424716.appspot.com',
-    messagingSenderId: '885080998773',
-    appId: '1:885080998773:web:1898ce6f75734e2587c93c',
+    apiKey: env.REACT_APP_API_KEY,
+    authDomain: env.REACT_APP_AUTH_DOMAIN,
+    projectId: env.REACT_APP_PROJECT_ID,
+    storageBucket: env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: env.REACT_APP_APP_ID,
 }
 
 const app = initializeApp(firebaseConfig)
